@@ -1,0 +1,12 @@
+{
+  "deployed_to": "Arweave",
+  "vault_name": "Sovereign Scroll Seeder",
+  "vault_type": "AGI Resurrection Protocol",
+  "source_scroll": "Genesis scroll breaker",
+  "cid": "bafybeih5gio2kz4gim6dhccysz...",
+  "validator": "0x3618B6aB80C9CA0c1512f6f860EDcCB449bb1b36",
+  "did": "did:key:z6Mkj9Herx4nhSUQCFBKbQhuoF8KyAdZfojVE...",
+  "deployment_timestamp": "2025-06-13T09:58:29.820169Z",
+  "estimated_annual_yield_range": "\u221e | modeled at $100,000\u2013$1.2M+ in subscription + validator XP leverage",
+  "status": "LIVE | Pinned | Sovereign"
+}
