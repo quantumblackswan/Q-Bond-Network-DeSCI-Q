@@ -1,0 +1,91 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
+import {XPYield} from "./XPYield.sol";
+
+/**
+ * @title BondEscrow
+ * @notice Holds users' QBOND tokens in escrow for a predefined duration and
+ *         coordinates with the XPYield contract to accrue XP while funds are
+ *         locked. After the bond matures, the user can claim back their
+ *         principal and optionally claim accrued XP.
+ */
+contract BondEscrow is Ownable {
+    /// Token accepted for staking and escrow (e.g. QBOND)
+    IERC20 public immutable stakingToken;
+    /// XP reward engine
+    XPYield public immutable xpYield;
+
+    struct DepositInfo {
+        uint256 amount;      // Amount of tokens deposited
+        uint256 startTime;   // Timestamp when the deposit was made
+        uint256 duration;    // Locking duration in seconds
+        bool claimed;        // Whether the deposit has been withdrawn
+    }
+
+    // Mapping of user address to their deposits
+    mapping(address => DepositInfo[]) public deposits;
+
+    event BondDeposited(address indexed user, uint256 indexed depositId, uint256 amount, uint256 duration);
+    event BondClaimed(address indexed user, uint256 indexed depositId, uint256 amount);
+
+    /**
+     * @param _stakingToken ERC20 token used for staking and escrow
+     * @param _xpYield Address of the XPYield contract
+     */
+    constructor(IERC20 _stakingToken, XPYield _xpYield) {
+        stakingToken = _stakingToken;
+        xpYield = _xpYield;
+    }
+
+    /**
+     * @notice Deposit tokens into the bond escrow and begin accruing XP.
+     *         The user must approve the escrow contract to transfer the tokens.
+     * @param amount Amount of tokens to deposit
+     * @param duration Locking duration in seconds
+     */
+    function deposit(uint256 amount, uint256 duration) external {
+        require(amount > 0, "BondEscrow: amount must be > 0");
+        require(duration > 0, "BondEscrow: duration must be > 0");
+        // Transfer tokens from user into escrow
+        require(stakingToken.transferFrom(msg.sender, address(this), amount), "BondEscrow: token transfer failed");
+        // Stake the tokens in the XPYield contract to start accruing XP
+        require(stakingToken.approve(address(xpYield), amount), "BondEscrow: approve failed");
+        xpYield.stake(amount);
+        // Record the deposit
+        deposits[msg.sender].push(DepositInfo({
+            amount: amount,
+            startTime: block.timestamp,
+            duration: duration,
+            claimed: false
+        }));
+        emit BondDeposited(msg.sender, deposits[msg.sender].length - 1, amount, duration);
+    }
+
+    /**
+     * @notice Claim a matured bond and withdraw the principal. Accrued XP
+     *         remains claimable via the XPYield contract.
+     * @param depositId Index of the deposit to claim
+     */
+    function claim(uint256 depositId) external {
+        require(depositId < deposits[msg.sender].length, "BondEscrow: invalid depositId");
+        DepositInfo storage info = deposits[msg.sender][depositId];
+        require(!info.claimed, "BondEscrow: already claimed");
+        require(block.timestamp >= info.startTime + info.duration, "BondEscrow: bond has not matured");
+        info.claimed = true;
+        // Withdraw the staked amount from XPYield
+        xpYield.withdraw(info.amount);
+        // Transfer the principal back to the user
+        require(stakingToken.transfer(msg.sender, info.amount), "BondEscrow: token transfer failed");
+        emit BondClaimed(msg.sender, depositId, info.amount);
+    }
+
+    /**
+     * @notice Get the number of deposits for a user.
+     */
+    function getDepositCount(address user) external view returns (uint256) {
+        return deposits[user].length;
+    }
+}
