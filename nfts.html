@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NFT Catalog – Q‑BOND Network</title>
+    <link rel="stylesheet" href="style.css" />
+    <script>
+      function toggleNav() {
+        document.querySelector('.nav-links').classList.toggle('active');
+      }
+    </script>
+  </head>
+  <body>
+    <header>
+      <div class="nav-bar container">
+        <a href="index.html" class="nav-title">Q‑BOND Network</a>
+        <span class="nav-toggle" onclick="toggleNav()">☰</span>
+        <ul class="nav-links">
+          <li><a href="about.html">About</a></li>
+          <li><a href="technology.html">Technology</a></li>
+          <li><a href="platform.html">Platform</a></li>
+          <li><a href="nfts.html" class="active">NFT Catalog</a></li>
+          <li><a href="investor.html">Investor</a></li>
+          <li><a href="governance.html">Governance</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <section class="container">
+      <h2>NFT Catalog</h2>
+      <p>
+        Q‑BOND Network utilises a suite of non‑fungible tokens to manage
+        identities, incentives and legacy within the protocol. Each NFT
+        category serves a specific role and is minted under defined
+        conditions. Soulbound tokens cannot be transferred, while other
+        NFTs may be tradable or inherited.
+      </p>
+      <div class="card-grid">
+        <div class="card">
+          <h3>QIE Identity NFT</h3>
+          <ul>
+          <li>Type: Soulbound</li>
+            <li>Trigger: Minted on first stake</li>
+            <li>Purpose: Sovereign ID, DeFi tax ID, memory upload key, messaging handle and identity proof</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>XP NFT</h3>
+          <ul>
+            <li>Type: Earnable soulbound</li>
+            <li>Trigger: Milestone‑based validator activity</li>
+            <li>Purpose: Determines yield curve boosts, increases proposal weight, unlocks perks and records trust</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Validator Genesis NFT</h3>
+          <ul>
+            <li>Type: Prestige badge (optional tradable)</li>
+            <li>Trigger: Awarded to top 100 early validators</li>
+            <li>Purpose: Proof‑of‑origin, permanent yield multiplier, legacy badge</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Proof‑of‑Research NFT</h3>
+          <ul>
+            <li>Type: Project‑specific validator‑voted NFT</li>
+            <li>Trigger: Minted after proposal passes DAO vote</li>
+            <li>Purpose: Linked to reproducible IP, yield tied to scientific royalties and contribution history</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Memory Resurrection NFT</h3>
+          <ul>
+            <li>Type: zkProof‑attached NFT</li>
+            <li>Trigger: Validator logs verified historic contributions</li>
+            <li>Purpose: Stores legacy XP, can be inherited, adds weight in Memory Vault DAO</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Bloodline Link NFT</h3>
+          <ul>
+            <li>Type: Succession certificate</li>
+            <li>Trigger: Heir designated through governance</li>
+            <li>Purpose: Grants succession rights and unlocks XP inheritance</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Sovereign Signal NFT</h3>
+          <ul>
+            <li>Type: Multi‑DAO credential</li>
+            <li>Trigger: Earned through cross‑DAO contributions</li>
+            <li>Purpose: Acts as a DAO passport, grants XP boost and enables access to special treasuries</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Aurora‑Linked Dynamic NFT</h3>
+          <ul>
+            <li>Type: AI‑reactive NFT</li>
+            <li>Trigger: Validator signal resonance via Aurora.EXE</li>
+            <li>Purpose: Tracks behaviour, evolves with activity, ties into trust scoring</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Validator Referral NFT</h3>
+          <ul>
+            <li>Type: Gamified badge (tradable)</li>
+            <li>Trigger: Earned after onboarding two or more validators</li>
+            <li>Purpose: Tracks network growth and grants XP or treasury bonuses</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Q‑BOND Timelock NFT</h3>
+          <ul>
+            <li>Type: Yield‑bearing time‑lock</li>
+            <li>Trigger: Issued when staking into a timelock vault</li>
+            <li>Purpose: Defines yield, maturity and rebond terms; tradable pre‑maturity and usable in treasury‑backed pools</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>
+        The NFT framework is designed to incentivize participation and align
+        values across the ecosystem. Details are based on internal
+        communications.
+      </p>
+    </footer>
+  </body>
+</html>
