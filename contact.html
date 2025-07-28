@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact – Q‑BOND Network</title>
+    <link rel="stylesheet" href="style.css" />
+    <script>
+      function toggleNav() {
+        document.querySelector('.nav-links').classList.toggle('active');
+      }
+    </script>
+    <style>
+      form {
+        max-width: 600px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      input,
+      textarea {
+        padding: 0.75rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 1rem;
+        width: 100%;
+      }
+      button {
+        padding: 0.75rem;
+        border: none;
+        border-radius: 4px;
+        background-color: var(--primary-blue);
+        color: var(--text-light);
+        font-size: 1rem;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: var(--secondary-teal);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="nav-bar container">
+        <a href="index.html" class="nav-title">Q‑BOND Network</a>
+        <span class="nav-toggle" onclick="toggleNav()">☰</span>
+        <ul class="nav-links">
+          <li><a href="about.html">About</a></li>
+          <li><a href="technology.html">Technology</a></li>
+          <li><a href="platform.html">Platform</a></li>
+          <li><a href="nfts.html">NFT Catalog</a></li>
+          <li><a href="investor.html">Investor</a></li>
+          <li><a href="governance.html">Governance</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <section class="container">
+      <h2>Contact Us</h2>
+      <p>
+        We’d love to hear from you. Whether you’re a researcher, investor or
+        community member, drop us a message and we’ll get back to you soon.
+      </p>
+      <form action="#" method="post" onsubmit="alert('Thank you for your message!'); return false;">
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="email" name="email" placeholder="Your Email" required />
+        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+      <p style="margin-top: 2rem;">
+        Or email us directly at
+        <a href="mailto:kevin@qbondnetwork.com">kevin@qbondnetwork.com</a>.
+      </p>
+    </section>
+
+    <footer>
+      <p>
+        This form is for demonstration only. Please do not submit sensitive
+        information. Contact via email for official inquiries.
+      </p>
+    </footer>
+  </body>
+</html>
